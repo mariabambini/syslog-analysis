@@ -24,15 +24,27 @@ Verificar se o Docker está rodando
 $ docker ps
 ```
 
-2. Feito isso, integrar o Docker ao GNS3.
-2.1 No GNS3, vá em Edit -> Preferences -> Server. Confirme que 'Enable the local server' está marcado, 'Host: localhost', 'Port: 3080 TCP'.
+2. Feito isso, integrar o Docker ao GNS3
+2.1 No GNS3, vá em Edit -> Preferences -> Server. 
+* Confirme que 'Enable the local server' está marcado. 
+* 'Host: localhost'
+* 'Port: 3080 TCP'
 
 2.2 Importar a imagem do container (vou utilizar Ubuntu 22.04)
-Docker -> Docker containers -> New -> New image. 'Image name: ubuntu:22.04'. 'Network adapters: 1'.  
+Docker -> Docker containers -> New -> New image. 
+* 'Image name: ubuntu:22.04'
+* 'Network adapters: 1'
+* 'Start command: /bin/bash'
+* 'Console type: telnet'
+* 'Environment: vazio'
 
 Caso tenha erro de permissão:
 
 ```console
 sudo usermod -aG docker $USER
 ```
+Feito isso, o container deve aparecer como na imagem:
 
+| <img src="img/container.jpeg" alt="image" width="100%" height="auto"> |
+|:--:|
+| Figura 1 - Container Docker Ubuntu |
