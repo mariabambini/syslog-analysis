@@ -3,6 +3,9 @@ Simulação de ambiente real para teste de viabilidade de uso de modelo de anál
 
 (descrição)
 
+## Dependências
+* xterm
+
 ## Instalação
 
 1. O primeiro passo é verificar se o GNS3 e Docker estão instalados e funcionando.
@@ -48,3 +51,5 @@ Feito isso, o container deve aparecer como na imagem:
 | <img src="img/container.jpeg" alt="image" width="60%" height="auto"> |
 |:--:|
 | Figura 1 - Container Docker Ubuntu |
+
+Para testar, arrasta uma máquina Ubuntu para o projeto e clique em Start.
