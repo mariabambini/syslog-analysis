@@ -1,7 +1,7 @@
 # syslog-analysis
 Simulação de ambiente real para teste de viabilidade de uso de modelo de análise de logs em instituição de ensino para detecção de anomalias em máquinas de laboratório.
 
-(descrição do que tem)
+(descrição)
 
 ## Instalação
 
@@ -25,18 +25,18 @@ docker ps
 ```
 
 2. Feito isso, integrar o Docker ao GNS3
-No GNS3, vá em Edit -> Preferences -> Server. 
+No GNS3, vá em Edit → Preferences → Server. 
 * Confirme que 'Enable the local server' está marcado. 
-* 'Host: localhost'
-* 'Port: 3080 TCP'
+* Host: localhost
+* Port: 3080 TCP
 
 Importar a imagem do container (vou utilizar Ubuntu 22.04)
-Docker -> Docker containers -> New -> New image. 
-* 'Image name: ubuntu:22.04'
-* 'Network adapters: 1'
-* 'Start command: /bin/bash'
-* 'Console type: telnet'
-* 'Environment: vazio'
+Docker → Docker containers → New → New image. 
+* Image name: ubuntu:22.04
+* Network adapters: 1
+* Start command: /bin/bash
+* Console type: telnet
+* Environment: vazio
 
 Caso tenha erro de permissão:
 
