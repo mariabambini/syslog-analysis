@@ -10,18 +10,18 @@ Simulação de ambiente real para teste de viabilidade de uso de modelo de anál
 Verificar se o GNS3 está instalado
 
 ```console
-$ gns3
+gns3
 ```
 Verificar se o Docker está instalado
 
 ```console
-$ docker --version
+docker --version
 ```
 
 Verificar se o Docker está rodando
 
 ```console
-$ docker ps
+docker ps
 ```
 
 2. Feito isso, integrar o Docker ao GNS3
