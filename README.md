@@ -25,11 +25,14 @@ $ docker ps
 ```
 
 2. Feito isso, integrar o Docker ao GNS3.
-2.1 No GNS3, vá em Edit -> Preferences -> GNS3 Server -> Local Server. Confirme que 'Enable the local server' está marcado, 'Host: 127.0.0.1', 'Port: 3080'.
+2.1 No GNS3, vá em Edit -> Preferences -> Server. Confirme que 'Enable the local server' está marcado, 'Host: localhost', 'Port: 3080 TCP'.
 
-2.2 Agora verificar o suporte ao Docker:
-Docker -> Docker containers. 'Docker support' deve estar enabled, 'Server:local' (a variar se não estiver usando backend local).
+2.2 Importar a imagem do container (vou utilizar Ubuntu 22.04)
+Docker -> Docker containers -> New -> New image. 'Image name: ubuntu:22.04'. 'Network adapters: 1'.  
 
-2.3 Importar a imagem do container (vou utilizar Ubuntu 22.04)
-(Ainda em Docker -> Docker containers) New -> New image. 'Image name: ubuntu:22.04'.
+Caso tenha erro de permissão:
+
+```console
+sudo usermod -aG docker $USER
+```
 
