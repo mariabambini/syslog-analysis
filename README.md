@@ -6,6 +6,11 @@ Simulação de ambiente real para teste de viabilidade de uso de modelo de anál
 ## Dependências
 * xterm
 * dynamips
+* libvirt
+Além de instalar o libvirt, também o habilite:
+```console
+sudo systemctl enable --now libvirtd
+```
 
 ## Instalação
 
@@ -63,7 +68,16 @@ Faça os mesmos passos para criar uma máquina servidor.
 1. Utilize um ethernet switch para conectar as duas máquinas.
 Tente iniciar os dispositivos para ter certeza que não houve nenhum erro.
 
-2. Configure os IPs.
+2. Conecte o switch a um NAT para ter acesso a internet nas máquinas e poder instalar dependências. 
+
+3. Configure os IPs.
+
+Nas duas máquinas, instale iproute:
+
+```console
+apt-get update
+apt-get install -y iproute2
+```
 
 * Máquina cliente:
 ```console
