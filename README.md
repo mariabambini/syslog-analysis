@@ -16,43 +16,63 @@ sudo systemctl enable --now libvirtd
 
 1. O primeiro passo é verificar se o GNS3 e Docker estão instalados e funcionando.
 
-Verificar se o GNS3 está instalado
+Verificar se o GNS3 está instalado:
 
 ```console
 gns3
 ```
-Verificar se o Docker está instalado
+Verificar se o Docker está instalado:
 
 ```console
 docker --version
 ```
 
-Verificar se o Docker está rodando
+Verificar se o Docker está rodando:
 
 ```console
 docker ps
 ```
 
-2. Feito isso, integrar o Docker ao GNS3
+Verifique se há problemas de permissão:
+```console
+docker info
+```
+Caso haja:
+
+```console
+sudo usermod -aG docker $USER
+```
+
+2. Feito isso, vamos criar containers para as máquinas cliente e servidor.
+
+Utilize o arquivo [Dockerfile](./docker-container/Dockerfile) e [entrypoint.sh](./docker-container/entrypoint.sh) para criar os containers.
+
+Para buildar a imagem, rode:
+```console
+docker build -t gns3-syslog-host:bullseye .
+```
+
+Confirme que não houve erro no build, e rode:
+```console
+docker images | grep gns3-syslog-host
+```
+
+
+3. Feito isso, integrar o Docker ao GNS3
 No GNS3, vá em Edit → Preferences → Server. 
 * Confirme que 'Enable the local server' está marcado. 
 * Host: localhost
 * Port: 3080 TCP
 
-Importar a imagem do container (vou utilizar Ubuntu 22.04)
+Importar a imagem do container (vou utilizar Debian 11)
 Docker → Docker containers → New → New image. 
-* Image name: ubuntu:22.04
+* Image name: 
 * Name: cliente
 * Network adapters: 1
 * Start command: /bin/bash
 * Console type: telnet
 * Environment: vazio
 
-Caso tenha erro de permissão:
-
-```console
-sudo usermod -aG docker $USER
-```
 Feito isso, o container deve aparecer como na imagem:
 
 | <img src="img/container.jpeg" alt="image" width="60%" height="auto"> |
