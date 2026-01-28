@@ -60,12 +60,14 @@ docker images | grep docker-container
 
 
 3. Feito isso, integrar o Docker ao GNS3
+
 No GNS3, vá em Edit → Preferences → Server. 
 * Confirme que 'Enable the local server' está marcado. 
 * Host: localhost
 * Port: 3080 TCP
 
 Importar a imagem do container (vou utilizar Debian 11)
+
 Docker → Docker containers → New → New image. 
 * Image name: 
 * Name: cliente
