@@ -7,6 +7,7 @@ Simulação de ambiente real para teste de viabilidade de uso de modelo de anál
 * xterm
 * dynamips
 * libvirt
+
 Além de instalar o libvirt, também o habilite:
 ```console
 sudo systemctl enable --now libvirtd
@@ -49,12 +50,12 @@ Utilize o arquivo [Dockerfile](./docker-container/Dockerfile) e [entrypoint.sh](
 
 Para buildar a imagem, rode:
 ```console
-docker build -t gns3-syslog-host:bullseye .
+docker build -t docker-container:bullseye .
 ```
 
 Confirme que não houve erro no build, e rode:
 ```console
-docker images | grep gns3-syslog-host
+docker images | grep docker-container
 ```
 
 
