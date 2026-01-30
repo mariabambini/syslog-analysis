@@ -48,14 +48,14 @@ sudo usermod -aG docker $USER
 
 Utilize o arquivo [Dockerfile](./docker-container/Dockerfile) e [entrypoint.sh](./docker-container/entrypoint.sh) para criar os containers.
 
-Para buildar a imagem, rode:
+Para buildar a imagem, confirme o diretório de sua imagem e rode:
 ```console
-docker build -t docker-container:bullseye .
+sudo docker build -t docker-container:bullseye .
 ```
 
 Confirme que não houve erro no build, e rode:
 ```console
-docker images | grep docker-container
+sudo docker images
 ```
 
 3. Feito isso, integrar o Docker ao GNS3
@@ -68,7 +68,7 @@ No GNS3, vá em Edit → Preferences → Server
 Importar a imagem do container (vou utilizar Debian 11)
 
 Docker → Docker containers → New → Existing image
-* Image name: docker-container:bullseye (vai variar de acordo com sua imagem; rode ```console docker image ``` para verificar)
+* Image name: docker-container:bullseye
 * Name: cliente
 * Network adapters: 1
 * Start command: vazio
@@ -77,7 +77,7 @@ Docker → Docker containers → New → Existing image
 
 Feito isso, o container deve aparecer como na imagem:
 
-| <img src="img/container.jpeg" alt="image" width="60%" height="auto"> |
+| <img src="img/debian_container.png" alt="image" width="60%" height="auto"> |
 |:--:|
 | Figura 1 - Container Docker Debian |
 
