@@ -58,21 +58,20 @@ Confirme que não houve erro no build, e rode:
 docker images | grep docker-container
 ```
 
-
 3. Feito isso, integrar o Docker ao GNS3
 
-No GNS3, vá em Edit → Preferences → Server. 
+No GNS3, vá em Edit → Preferences → Server
 * Confirme que 'Enable the local server' está marcado. 
 * Host: localhost
 * Port: 3080 TCP
 
 Importar a imagem do container (vou utilizar Debian 11)
 
-Docker → Docker containers → New → New image. 
-* Image name: 
+Docker → Docker containers → New → Existing image
+* Image name: docker-container:bullseye (vai variar de acordo com sua imagem; rode ```console docker image ``` para verificar)
 * Name: cliente
 * Network adapters: 1
-* Start command: /bin/bash
+* Start command: vazio
 * Console type: telnet
 * Environment: vazio
 
@@ -80,9 +79,9 @@ Feito isso, o container deve aparecer como na imagem:
 
 | <img src="img/container.jpeg" alt="image" width="60%" height="auto"> |
 |:--:|
-| Figura 1 - Container Docker Ubuntu |
+| Figura 1 - Container Docker Debian |
 
-Para testar, arrasta uma máquina Ubuntu para o projeto e clique em Start.
+Para testar, arrasta uma máquina Debian para o projeto e clique em Start.
 
 Faça os mesmos passos para criar uma máquina servidor. 
 
