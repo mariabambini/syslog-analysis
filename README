@@ -1,0 +1,11 @@
+# Pipeline completo (parse + treino + detecção)
+python src/main.py full --logs data/raw
+
+# Só o parse (para ver os templates gerados)
+python src/main.py parse --logs data/raw
+
+# Só treino
+python src/main.py train --logs data/raw
+
+# Detecção com modelo já treinado (passe o nº de clusters gerados)
+python src/main.py detect --logs data/raw --classes 50

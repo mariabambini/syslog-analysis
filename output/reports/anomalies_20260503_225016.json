@@ -1,0 +1,661 @@
+{
+  "generated_at": "2026-05-03T22:50:16.558711",
+  "templates": {
+    "1": "authentication failure; logname= uid=<<NUM>> euid=<<NUM>> <*> ruser= <*>",
+    "2": "check pass; user unknown",
+    "3": "authentication failure; logname= uid=<<NUM>> euid=<<NUM>> tty=NODEVssh ruser= <*> <*>",
+    "4": "session opened for user <*> by <*>",
+    "5": "session closed for user <*>",
+    "6": "ALERT exited abnormally with [<<NUM>>]",
+    "7": "connection from <<IP>> <*> at <*> <*> <<NUM>> <<NUM>>:<<NUM>>:<<NUM>> <<NUM>>",
+    "8": "User unknown timed out after <<NUM>> seconds at Sat Jun <<NUM>> <<NUM>>:<<NUM>>:<<NUM>> <<NUM>>",
+    "9": "cupsd <*> succeeded",
+    "10": "Jun <<NUM>> <<NUM>>:<<NUM>>:<<NUM>> combo syslogd <<NUM>>.<<NUM>>.<<NUM>>: restart.",
+    "11": "Received SNMP packet(s) from <<IP>>",
+    "12": "Authentication failed from <<IP>> (<<IP>>): Permission denied in replay cache code",
+    "13": "Kerberos authentication failed",
+    "14": "Authentication failed from <<IP>> (<<IP>>): Software caused connection abort",
+    "15": "Jul <<NUM>> <<NUM>>:<<NUM>>:<<NUM>> combo syslogd <<NUM>>.<<NUM>>.<<NUM>>: restart.",
+    "16": "*** info [mice.c(<<NUM>>)]:",
+    "17": "imps2: Auto-detected intellimouse PS/<<NUM>>",
+    "18": "Jul <<NUM>> <<NUM>>:<<NUM>>:<<NUM>> combo -- root[<<NUM>>]: ROOT LOGIN ON tty2",
+    "19": "removing device node <*>",
+    "20": "creating device node <*>",
+    "21": "Couldn't authenticate user",
+    "22": "ANONYMOUS FTP LOGIN FROM <<IP>>, (anonymous)",
+    "23": "notify question section contains no SOA",
+    "24": "getpeername (ftpd): Transport endpoint is not connected",
+    "25": "warning: can't get client address: Connection reset by peer",
+    "26": "syslogd startup succeeded",
+    "27": "klogd <<NUM>>.<<NUM>>.<<NUM>>, log source = /proc/kmsg started.",
+    "28": "Linux version <<NUM>>.<<NUM>>.<<NUM>>-<<NUM>>.<<NUM>> (bhcompile@bugs.build.redhat.com) (gcc version <<NUM>>.<<NUM>>.<<NUM>> <<NUM>> (Red Hat Linux <<NUM>>.<<NUM>>.<<NUM>>-<<NUM>>)) #<<NUM>> Sat May <<NUM>> <<NUM>>:<<NUM>>:<<NUM>> EDT <<NUM>>",
+    "29": "BIOS-provided physical RAM map:",
+    "30": "BIOS-e820: <*> - <*> <*>",
+    "31": "0MB HIGHMEM available.",
+    "32": "126MB LOWMEM available.",
+    "33": "zapping low mappings.",
+    "34": "klogd startup succeeded",
+    "35": "On node <<NUM>> totalpages: <<NUM>>",
+    "36": "DMA zone: <<NUM>> pages, LIFO batch:<<NUM>>",
+    "37": "Normal zone: <<NUM>> pages, LIFO batch:<<NUM>>",
+    "38": "irqbalance startup succeeded",
+    "39": "HighMem zone: <<NUM>> pages, LIFO batch:<<NUM>>",
+    "40": "DMI <<NUM>>.<<NUM>> present.",
+    "41": "ACPI disabled because your bios is from <<NUM>> and too old",
+    "42": "You can enable it with acpi=force",
+    "43": "Built <<NUM>> zonelists",
+    "44": "Kernel command line: ro root=LABEL=/ rhgb quiet",
+    "45": "mapped 4G/4G trampoline to ffff3000.",
+    "46": "Initializing CPU#<<NUM>>",
+    "47": "CPU <<NUM>> irqstacks, hard=<<NUM>> soft=<<NUM>>",
+    "48": "portmap startup succeeded",
+    "49": "PID hash table entries: <<NUM>> (order <<NUM>>: <<NUM>> bytes)",
+    "50": "Detected <<NUM>>.<<NUM>> MHz processor.",
+    "51": "Version <<NUM>>.<<NUM>>.<<NUM>> Starting",
+    "52": "Using tsc for high-res timesource",
+    "53": "rpc.statd startup succeeded",
+    "54": "Console: colour VGA+ 80x25",
+    "55": "Memory: 125312k/129720k available (1540k kernel code, 3860k reserved, 599k data, 144k init, 0k highmem)",
+    "56": "Calibrating delay loop... <<NUM>>.<<NUM>> BogoMIPS",
+    "57": "Security Scaffold v1.<<NUM>>.<<NUM>> initialized",
+    "58": "SELinux: Initializing.",
+    "59": "SELinux: Starting in permissive mode",
+    "60": "There is already a security framework initialized, register_security failed.",
+    "61": "Failure registering capabilities with the kernel",
+    "62": "selinux_register_security: Registering secondary module capability",
+    "63": "Capability LSM initialized",
+    "64": "rpc.idmapd startup succeeded",
+    "65": "Dentry cache hash table entries: <<NUM>> (order: <<NUM>>, <<NUM>> bytes)",
+    "66": "Inode-cache hash table entries: <<NUM>> (order: <<NUM>>, <<NUM>> bytes)",
+    "67": "Mount-cache hash table entries: <<NUM>> (order: <<NUM>>, <<NUM>> bytes)",
+    "68": "CPU: L1 I cache: 16K, L1 D cache: 16K",
+    "69": "CPU: L2 cache: 256K",
+    "70": "Intel machine check architecture supported.",
+    "71": "Intel machine check reporting enabled on CPU#<<NUM>>.",
+    "72": "CPU: Intel Pentium III (Coppermine) stepping <<NUM>>",
+    "73": "Enabling fast FPU save and restore... done.",
+    "74": "Enabling unmasked SIMD FPU exception support... done.",
+    "75": "Checking 'hlt' instruction... OK.",
+    "76": "Initializing random number generator: succeeded",
+    "77": "POSIX conformance testing by UNIFIX",
+    "78": "NET: Registered protocol family <<NUM>>",
+    "79": "PCI: PCI BIOS revision <<NUM>>.<<NUM>> entry at 0xfc0ce, last bus=<<NUM>>",
+    "80": "PCI: Using configuration type <<NUM>>",
+    "81": "mtrr: v2.<<NUM>> (<<NUM>>)",
+    "82": "ACPI: Subsystem revision <<NUM>>",
+    "83": "ACPI: Interpreter disabled.",
+    "84": "Linux Plug and Play Support v0.<<NUM>> (c) Adam Belay",
+    "85": "Starting pcmcia: succeeded",
+    "86": "usbcore: registered new driver <*>",
+    "87": "ACPI: ACPI tables contain no PCI IRQ routing entries",
+    "88": "PCI: Invalid ACPI-PCI IRQ routing table",
+    "89": "PCI: Probing PCI hardware",
+    "90": "PCI: Probing PCI hardware (bus <<NUM>>)",
+    "91": "Transparent bridge - <<NUM>>:<<NUM>>:1e.<<NUM>>",
+    "92": "PCI: Using IRQ router PIIX/ICH [<<NUM>>/<<NUM>>] at <<NUM>>:<<NUM>>:1f.<<NUM>>",
+    "93": "apm: BIOS version <<NUM>>.<<NUM>> Flags 0x03 (Driver version <<NUM>>.16ac)",
+    "94": "audit: initializing netlink socket (disabled)",
+    "95": "kernel.core_uses_pid = <<NUM>>",
+    "96": "HCI daemon ver <<NUM>>.<<NUM>> started",
+    "97": "hcid startup succeeded",
+    "98": "audit(<<NUM>>.<<NUM>>:<<NUM>>): initialized",
+    "99": "Setting network parameters: succeeded",
+    "100": "sdpd startup succeeded",
+    "101": "sdpd v1.<<NUM>> started",
+    "102": "Total HugeTLB memory allocated, <<NUM>>",
+    "103": "Bringing up loopback interface: succeeded",
+    "104": "VFS: Disk quotas dquot_6.<<NUM>>.<<NUM>>",
+    "105": "Dquot-cache hash table entries: <<NUM>> (order <<NUM>>, <<NUM>> bytes)",
+    "106": "SELinux: Registering netfilter hooks",
+    "107": "Initializing Cryptographic API",
+    "108": "pci_hotplug: PCI Hot Plug PCI Core version: <<NUM>>.<<NUM>>",
+    "109": "isapnp: Scanning for PnP cards...",
+    "110": "isapnp: No Plug & Play device found",
+    "111": "Real Time Clock Driver v1.<<NUM>>",
+    "112": "Linux agpgart interface v0.<<NUM>> (c) Dave Jones"
+  },
+  "anomalies_by_file": {
+    "Linux_2k.log": [
+      {
+        "position": 166,
+        "event_id": 11,
+        "expected_topk": [
+          7,
+          4,
+          3,
+          5,
+          2,
+          6,
+          9,
+          23,
+          12
+        ]
+      },
+      {
+        "position": 167,
+        "event_id": 2,
+        "expected_topk": [
+          7,
+          4,
+          6,
+          15,
+          9,
+          12,
+          10,
+          13,
+          3
+        ]
+      },
+      {
+        "position": 896,
+        "event_id": 17,
+        "expected_topk": [
+          4,
+          6,
+          9,
+          15,
+          12,
+          13,
+          7,
+          23,
+          5
+        ]
+      },
+      {
+        "position": 1809,
+        "event_id": 23,
+        "expected_topk": [
+          7,
+          4,
+          3,
+          5,
+          2,
+          6,
+          22,
+          9,
+          8
+        ]
+      },
+      {
+        "position": 1908,
+        "event_id": 26,
+        "expected_topk": [
+          4,
+          7,
+          15,
+          6,
+          9,
+          12,
+          13,
+          10,
+          23
+        ]
+      },
+      {
+        "position": 1956,
+        "event_id": 70,
+        "expected_topk": [
+          66,
+          71,
+          68,
+          67,
+          65,
+          86,
+          63,
+          73,
+          69
+        ]
+      },
+      {
+        "position": 1958,
+        "event_id": 72,
+        "expected_topk": [
+          86,
+          66,
+          71,
+          68,
+          67,
+          73,
+          65,
+          69,
+          81
+        ]
+      },
+      {
+        "position": 1960,
+        "event_id": 74,
+        "expected_topk": [
+          86,
+          71,
+          68,
+          73,
+          66,
+          81,
+          77,
+          79,
+          69
+        ]
+      },
+      {
+        "position": 1961,
+        "event_id": 75,
+        "expected_topk": [
+          86,
+          81,
+          71,
+          73,
+          68,
+          77,
+          79,
+          66,
+          74
+        ]
+      },
+      {
+        "position": 1962,
+        "event_id": 76,
+        "expected_topk": [
+          86,
+          81,
+          77,
+          73,
+          90,
+          79,
+          71,
+          68,
+          74
+        ]
+      },
+      {
+        "position": 1964,
+        "event_id": 78,
+        "expected_topk": [
+          86,
+          90,
+          81,
+          100,
+          91,
+          77,
+          98,
+          79,
+          105
+        ]
+      },
+      {
+        "position": 1965,
+        "event_id": 79,
+        "expected_topk": [
+          86,
+          90,
+          98,
+          100,
+          91,
+          81,
+          105,
+          77,
+          103
+        ]
+      },
+      {
+        "position": 1966,
+        "event_id": 80,
+        "expected_topk": [
+          86,
+          90,
+          98,
+          100,
+          91,
+          105,
+          103,
+          81,
+          109
+        ]
+      },
+      {
+        "position": 1967,
+        "event_id": 81,
+        "expected_topk": [
+          86,
+          90,
+          98,
+          100,
+          91,
+          105,
+          103,
+          109,
+          107
+        ]
+      },
+      {
+        "position": 1968,
+        "event_id": 82,
+        "expected_topk": [
+          86,
+          98,
+          90,
+          105,
+          109,
+          91,
+          100,
+          103,
+          107
+        ]
+      },
+      {
+        "position": 1969,
+        "event_id": 83,
+        "expected_topk": [
+          86,
+          98,
+          90,
+          109,
+          103,
+          105,
+          91,
+          100,
+          107
+        ]
+      },
+      {
+        "position": 1970,
+        "event_id": 84,
+        "expected_topk": [
+          86,
+          98,
+          90,
+          109,
+          103,
+          105,
+          107,
+          91,
+          100
+        ]
+      },
+      {
+        "position": 1971,
+        "event_id": 85,
+        "expected_topk": [
+          86,
+          98,
+          90,
+          109,
+          103,
+          105,
+          107,
+          102,
+          91
+        ]
+      },
+      {
+        "position": 1974,
+        "event_id": 87,
+        "expected_topk": [
+          86,
+          98,
+          90,
+          109,
+          103,
+          107,
+          105,
+          102,
+          91
+        ]
+      },
+      {
+        "position": 1975,
+        "event_id": 88,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          90,
+          103,
+          107,
+          105,
+          102,
+          91
+        ]
+      },
+      {
+        "position": 1976,
+        "event_id": 89,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          90,
+          103,
+          107,
+          102,
+          105,
+          91
+        ]
+      },
+      {
+        "position": 1979,
+        "event_id": 92,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          90,
+          107,
+          102,
+          105,
+          91
+        ]
+      },
+      {
+        "position": 1980,
+        "event_id": 93,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          90,
+          107,
+          102,
+          105,
+          91
+        ]
+      },
+      {
+        "position": 1981,
+        "event_id": 94,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          107,
+          90,
+          102,
+          105,
+          91
+        ]
+      },
+      {
+        "position": 1982,
+        "event_id": 95,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          107,
+          90,
+          102,
+          105,
+          91
+        ]
+      },
+      {
+        "position": 1983,
+        "event_id": 96,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          107,
+          90,
+          102,
+          105,
+          91
+        ]
+      },
+      {
+        "position": 1984,
+        "event_id": 97,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          107,
+          90,
+          102,
+          105,
+          91
+        ]
+      },
+      {
+        "position": 1986,
+        "event_id": 99,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          107,
+          90,
+          102,
+          105,
+          91
+        ]
+      },
+      {
+        "position": 1987,
+        "event_id": 100,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          107,
+          90,
+          102,
+          105,
+          91
+        ]
+      },
+      {
+        "position": 1988,
+        "event_id": 101,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          107,
+          90,
+          102,
+          105,
+          91
+        ]
+      },
+      {
+        "position": 1991,
+        "event_id": 104,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          107,
+          102,
+          90,
+          105,
+          91
+        ]
+      },
+      {
+        "position": 1993,
+        "event_id": 106,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          107,
+          102,
+          90,
+          105,
+          91
+        ]
+      },
+      {
+        "position": 1995,
+        "event_id": 108,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          107,
+          102,
+          90,
+          105,
+          91
+        ]
+      },
+      {
+        "position": 1997,
+        "event_id": 110,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          107,
+          102,
+          105,
+          90,
+          91
+        ]
+      },
+      {
+        "position": 1998,
+        "event_id": 111,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          107,
+          102,
+          105,
+          90,
+          91
+        ]
+      },
+      {
+        "position": 1999,
+        "event_id": 112,
+        "expected_topk": [
+          86,
+          98,
+          109,
+          103,
+          107,
+          102,
+          105,
+          90,
+          91
+        ]
+      }
+    ]
+  }
+}
