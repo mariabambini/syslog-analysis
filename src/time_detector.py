@@ -7,26 +7,20 @@ from datetime import datetime, time
 
 logger = logging.getLogger(__name__)
 
-# ── Horário permitido ──────────────────────────────────────────────────────
-
-ALLOWED_START = time(7, 30)   # 07:30
-ALLOWED_END   = time(23, 0)   # 23:00
+# horário de aula
+ALLOWED_START = time(7, 30)
+ALLOWED_END   = time(23, 0)
 
 def is_allowed(t: time) -> bool:
     return ALLOWED_START <= t <= ALLOWED_END
 
-
-# ── Padrões de linha de log ────────────────────────────────────────────────
-
-# Timestamp syslog: "May  3 22:45:01" ou "May 03 22:45:01"
 _TS_RE = re.compile(
     r"^(?P<month>\w{3})\s+(?P<day>\d{1,2})\s+(?P<hour>\d{2}):(?P<min>\d{2}):(?P<sec>\d{2})"
-    r"\s+(?P<hostname>\S+)"      # nome da máquina destino
-    r"\s+(?P<process>\S+):"      # processo[pid]:
-    r"\s+(?P<message>.*)"        # mensagem
+    r"\s+(?P<hostname>\S+)" # nome da máquina destino
+    r"\s+(?P<process>\S+):" # processo[pid]:
+    r"\s+(?P<message>.*)" # mensagem
 )
 
-# Padrões que indicam um "acesso" e de onde extrair a máquina de origem
 ACCESS_PATTERNS = [
     # SSH aceito: extrai IP de origem
     {
@@ -50,7 +44,7 @@ ACCESS_PATTERNS = [
         "regex": re.compile(
             r"(?P<user>\S+)\s*:.*USER=(?P<target_user>\S+)\s*;.*COMMAND=(?P<command>.+)"
         ),
-        "src_field": None,   # origem = hostname da linha
+        "src_field": None, # origem = hostname da linha
     },
     # su - mudança de usuário
     {
@@ -62,28 +56,19 @@ ACCESS_PATTERNS = [
     },
 ]
 
-
-# ── Estrutura de resultado ─────────────────────────────────────────────────
-
 @dataclass
 class TimeAnomaly:
-    timestamp_raw: str      # "May  3 02:13:44"
-    time_of_day:   str      # "02:13:44"
-    hostname:      str      # máquina onde ocorreu
-    source:        str      # IP ou hostname de origem
-    user:          str      # usuário envolvido
-    event_type:    str      # ssh_login, sudo, etc.
-    message:       str      # linha completa do log
-    log_file:      str      # arquivo de origem
+    timestamp_raw: str # "May  3 02:13:44"
+    time_of_day:   str # "02:13:44"
+    hostname: str # máquina onde ocorreu
+    source: str # IP ou hostname de origem
+    user: str # usuário envolvido
+    event_type: str # ssh_login, sudo, etc.
+    message: str # linha completa do log
+    log_file: str # arquivo de origem
 
-
-# ── Parser de linha ────────────────────────────────────────────────────────
 
 def parse_line(raw: str, log_file: str) -> TimeAnomaly | None:
-    """
-    Tenta extrair um evento de acesso da linha.
-    Retorna None se a linha não for um evento de acesso.
-    """
     m = _TS_RE.match(raw)
     if not m:
         return None
@@ -96,11 +81,9 @@ def parse_line(raw: str, log_file: str) -> TimeAnomaly | None:
     message  = m.group("message")
     ts_raw   = f"{m.group('month')} {m.group('day'):>2} {m.group('hour')}:{m.group('min')}:{m.group('sec')}"
 
-    # Só nos interessa se estiver FORA do horário permitido
     if is_allowed(t):
         return None
 
-    # Verifica se a mensagem bate com algum padrão de acesso
     for pattern in ACCESS_PATTERNS:
         pm = pattern["regex"].search(message)
         if not pm:
@@ -108,12 +91,11 @@ def parse_line(raw: str, log_file: str) -> TimeAnomaly | None:
 
         user = pm.groupdict().get("user", "?")
 
-        # Determina a origem (IP ou hostname local)
         src_field = pattern["src_field"]
         if src_field and src_field in pm.groupdict():
             source = pm.group(src_field)
         else:
-            source = hostname   # acesso local → a própria máquina é a origem
+            source = hostname
 
         return TimeAnomaly(
             timestamp_raw = ts_raw,
@@ -127,9 +109,6 @@ def parse_line(raw: str, log_file: str) -> TimeAnomaly | None:
         )
 
     return None
-
-
-# ── Detector principal ─────────────────────────────────────────────────────
 
 class TimeAnomalyDetector:
 
@@ -162,8 +141,6 @@ class TimeAnomalyDetector:
                 path = os.path.join(directory, fname)
                 all_anomalies.extend(self.scan_file(path))
         return all_anomalies
-
-    # ── Relatório ──────────────────────────────────────────────────────────
 
     def print_report(self, anomalies: list[TimeAnomaly]):
         if not anomalies:
@@ -214,8 +191,6 @@ class TimeAnomalyDetector:
         logger.info(f"Relatório salvo em: {path}")
         return path
 
-
-# ── Execução standalone ────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     import sys

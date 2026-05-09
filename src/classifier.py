@@ -1,10 +1,3 @@
-"""
-classifier.py
-─────────────
-Modelo DeepLog: LSTM que aprende sequências normais de event IDs
-e detecta anomalias quando a previsão falha.
-"""
-
 import os
 import torch
 import torch.nn as nn
@@ -22,15 +15,7 @@ logger = logging.getLogger(__name__)
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-
-# ── Dataset ────────────────────────────────────────────────────────────────
-
 class LogSequenceDataset(Dataset):
-    """
-    Janelas deslizantes sobre uma sequência de event IDs.
-    Entrada: janela de tamanho WINDOW_SIZE
-    Alvo:    próximo event ID
-    """
     def __init__(self, event_ids: list[int], window_size: int = DEEPLOG_WINDOW_SIZE):
         self.window_size = window_size
         self.samples: list[tuple[list[int], int]] = []
@@ -49,9 +34,6 @@ class LogSequenceDataset(Dataset):
         y = torch.tensor(target, dtype=torch.long)
         return x, y
 
-
-# ── Modelo LSTM ────────────────────────────────────────────────────────────
-
 class DeepLogLSTM(nn.Module):
     def __init__(self, num_classes: int,
                  input_size:  int = DEEPLOG_INPUT_SIZE,
@@ -67,12 +49,10 @@ class DeepLogLSTM(nn.Module):
         self.fc = nn.Linear(hidden_size, num_classes)
 
     def forward(self, x):
-        out, _ = self.lstm(x)          # (B, W, H)
-        out     = out[:, -1, :]        # último passo de tempo (B, H)
-        return self.fc(out)            # (B, num_classes)
+        out, _ = self.lstm(x) # (B, W, H)
+        out     = out[:, -1, :] # último passo de tempo (B, H)
+        return self.fc(out) # (B, num_classes)
 
-
-# ── Treino ─────────────────────────────────────────────────────────────────
 
 class DeepLogClassifier:
     def __init__(self, num_classes: int):
@@ -115,17 +95,10 @@ class DeepLogClassifier:
         self.model.eval()
         logger.info("Modelo carregado.")
 
-    # ── Inferência ─────────────────────────────────────────────────────────
-
     def predict_anomalies(self, event_ids: list[int],
                           top_k: int = DEEPLOG_TOP_K,
                           window_size: int = DEEPLOG_WINDOW_SIZE
                           ) -> list[dict]:
-        """
-        Retorna lista de dicionários com info de cada posição anômala.
-        Uma posição é anômala quando o event ID real NÃO está entre
-        as top_k previsões do modelo.
-        """
         self.model.eval()
         anomalies = []
 
@@ -135,7 +108,7 @@ class DeepLogClassifier:
                 target = event_ids[i + window_size]
 
                 x = torch.tensor(window, dtype=torch.float32).unsqueeze(0).unsqueeze(-1).to(DEVICE)
-                logits = self.model(x)                       # (1, num_classes)
+                logits = self.model(x)
                 topk   = torch.topk(logits, top_k, dim=1).indices.squeeze().tolist()
 
                 if isinstance(topk, int):

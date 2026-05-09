@@ -1,22 +1,12 @@
-"""
-report.py
-─────────
-Gera relatórios das anomalias detectadas.
-"""
-
 import json
 import os
 from datetime import datetime
-
 from config import OUTPUT_REPORTS
-
 
 def _timestamp() -> str:
     return datetime.now().strftime("%Y%m%d_%H%M%S")
 
-
 def save_json(results: dict[str, list[dict]], templates: dict[int, str] | None = None):
-    """Salva resultado completo em JSON."""
     payload = {
         "generated_at": datetime.now().isoformat(),
         "templates": {str(k): v for k, v in (templates or {}).items()},
@@ -30,12 +20,11 @@ def save_json(results: dict[str, list[dict]], templates: dict[int, str] | None =
 
 
 def print_summary(results: dict[str, list[dict]], templates: dict[int, str] | None = None):
-    """Imprime resumo no terminal."""
     templates = templates or {}
     total_anomalies = sum(len(v) for v in results.values())
 
     print(f"\n{'═'*60}")
-    print(f"  RELATÓRIO DE ANOMALIAS — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"  Relatório de anomalias — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{'═'*60}")
     print(f"  Total de anomalias detectadas: {total_anomalies}")
     print(f"{'─'*60}")
@@ -46,9 +35,9 @@ def print_summary(results: dict[str, list[dict]], templates: dict[int, str] | No
             print("    ✓ Nenhuma anomalia encontrada.")
             continue
 
-        for a in anomalies[:20]:   # mostra no máximo 20 por arquivo
+        for a in anomalies[:20]: # mostra no máximo 20 por arquivo
             tmpl = templates.get(a["event_id"], "?")
-            print(f"    [pos {a['position']:6d}] event_id={a['event_id']:4d}  template='{tmpl}'")
+            print(f"[pos {a['position']:6d}] event_id={a['event_id']:4d} template='{tmpl}'")
 
         if len(anomalies) > 20:
             print(f"    ... e mais {len(anomalies) - 20} anomalias (ver JSON completo)")

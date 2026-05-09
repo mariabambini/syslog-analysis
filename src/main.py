@@ -23,7 +23,6 @@ def setup_logging(verbose: bool):
 
 
 def parse_time(s: str) -> dtime:
-    """Converte string 'HH:MM' em datetime.time."""
     try:
         h, m = s.split(":")
         return dtime(int(h), int(m))
@@ -32,7 +31,6 @@ def parse_time(s: str) -> dtime:
 
 
 def run_time_check(log_dir: str, start: dtime, end: dtime):
-    """Executa a verificação de horário e imprime/salva o relatório."""
     td = TimeAnomalyDetector(allowed_start=start, allowed_end=end)
     anomalies = td.scan_directory(log_dir)
     td.print_report(anomalies)
@@ -102,7 +100,7 @@ def main():
         save_json(results, templates)
 
         if not args.no_time_check:
-            print("\n── Verificação de Horário ──")
+            print("\nVerificação de horário.")
             run_time_check(args.logs, allowed_start, allowed_end)
         return
 
@@ -113,7 +111,7 @@ def main():
     save_json(results, templates)
 
     if not args.no_time_check:
-        print("\n── Verificação de Horário ──")
+        print("\nVerificação de horário.")
         run_time_check(args.logs, allowed_start, allowed_end)
 
 

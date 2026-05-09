@@ -1,18 +1,12 @@
-"""
-metrics.py
-──────────
-Métricas de avaliação (quando ground truth está disponível).
-"""
-
 from dataclasses import dataclass
 
 
 @dataclass
 class DetectionMetrics:
-    tp: int = 0  # anomalias reais detectadas
-    fp: int = 0  # normais classificadas como anomalia
-    tn: int = 0  # normais classificadas como normais
-    fn: int = 0  # anomalias reais não detectadas
+    tp: int = 0 # anomalias reais detectadas
+    fp: int = 0 # normais classificadas como anomalia
+    tn: int = 0 # normais classificadas como normais
+    fn: int = 0 # anomalias reais não detectadas
 
     @property
     def precision(self) -> float:
@@ -44,11 +38,6 @@ class DetectionMetrics:
 def evaluate(anomaly_positions: list[int],
              ground_truth_anomalies: set[int],
              total_positions: int) -> DetectionMetrics:
-    """
-    anomaly_positions       → posições detectadas como anomalia
-    ground_truth_anomalies  → posições realmente anômalas (set)
-    total_positions         → total de posições avaliadas
-    """
     detected = set(anomaly_positions)
     m = DetectionMetrics()
     m.tp = len(detected & ground_truth_anomalies)
