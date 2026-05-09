@@ -1,9 +1,7 @@
 # syslog-analysis
 
-Ferramenta de detecção de anomalias em logs de sistema, combinando o parser Drain3 com o modelo de aprendizado profundo DeepLog (LSTM), além de um detector de acessos fora do horário permitido.
-
-Desenvolvida para análise de logs enviados de máquinas virtuais, o sistema é capaz de identificar padrões anômalos de comportamento tanto por sequência de eventos quanto por horário de acesso.
-
+Repositório de estudo de caso desenvolvido no contexto de pesquisa universitária sobre análise de logs de sistema com mapeamento de usuário para detecção de comportamento anômalo.
+O trabalho investiga a aplicação do parser Drain3 em conjunto com o modelo de aprendizado profundo DeepLog (LSTM) para identificar desvios de comportamento em logs de máquinas virtuais. A abordagem combina detecção baseada em sequência de eventos — onde o modelo aprende os padrões normais de operação do sistema — com detecção baseada em regras temporais, que identifica acessos realizados fora do horário esperado e rastreia o identificador da máquina de origem.
 ---
 
 ## Sumário
@@ -71,11 +69,6 @@ Logs da VM (.log)
 - PyTorch 2.0+
 - Drain3
 
-```
-torch
-drain3
-```
-
 ---
 
 ## Instalação
@@ -110,7 +103,7 @@ data/raw/
 
 ---
 
-### 1. Pipeline Completo (`full`)
+### 1. Pipeline Completo
 
 Executa as três etapas em sequência: parse com Drain3, treino do DeepLog e detecção de anomalias, incluindo a verificação de horário.
 
@@ -131,7 +124,7 @@ python src/main.py full --logs data/raw --no-time-check
 ```
 ---
 
-### 2. Somente Parse (`parse`)
+### 2. Somente Parse
 
 Executa apenas o Drain3, sem treinar ou detectar anomalias. Útil para inspecionar os templates gerados antes de treinar o modelo.
 
@@ -160,7 +153,7 @@ Os event IDs e templates são salvos em `data/parsed/`.
 
 ---
 
-### 3. Somente Treino (`train`)
+### 3. Somente Treino
 
 Executa o parse e treina o modelo DeepLog, sem rodar a detecção. Use quando quiser treinar com logs normais antes de analisar logs novos.
 
@@ -182,7 +175,7 @@ Parâmetros de treino configuráveis em `config.py`:
 
 ---
 
-### 4. Somente Detecção (`detect`)
+### 4. Somente Detecção
 
 Usa um modelo já treinado para detectar anomalias em novos logs. É necessário informar o número de classes (número de templates únicos gerados na etapa de treino).
 
@@ -200,7 +193,7 @@ python src/main.py detect --logs data/raw/novos --classes 50 --start 07:30 --end
 
 ---
 
-### 5. Verificação de Horário (`timescan`)
+### 5. Verificação de Horário
 
 Detecta exclusivamente acessos fora do horário permitido, sem envolver o DeepLog. É mais rápido e não requer modelo treinado.
 
@@ -208,13 +201,13 @@ Detecta exclusivamente acessos fora do horário permitido, sem envolver o DeepLo
 python src/main.py timescan --logs data/raw
 ```
 
-**Com horário personalizado:**
+Com horário personalizado:
 
 ```bash
 python src/main.py timescan --logs data/raw --start 09:00 --end 17:00
 ```
 
-**Exemplo de saída:**
+Exemplo de saída:
 
 ```
 ═════════════════════════════════════════════════════════════════
