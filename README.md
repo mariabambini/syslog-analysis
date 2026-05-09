@@ -1,6 +1,6 @@
 # syslog-analysis
 
-Ferramenta de detecção de anomalias em logs de sistema, combinando o parser **Drain3** com o modelo de aprendizado profundo **DeepLog** (LSTM), além de um detector de acessos fora do horário permitido.
+Ferramenta de detecção de anomalias em logs de sistema, combinando o parser Drain3 com o modelo de aprendizado profundo DeepLog (LSTM), além de um detector de acessos fora do horário permitido.
 
 Desenvolvida para análise de logs enviados de máquinas virtuais, o sistema é capaz de identificar padrões anômalos de comportamento tanto por sequência de eventos quanto por horário de acesso.
 
@@ -10,7 +10,6 @@ Desenvolvida para análise de logs enviados de máquinas virtuais, o sistema é 
 
 - [Visão Geral](#visão-geral)
 - [Arquitetura](#arquitetura)
-- [Estrutura do Projeto](#estrutura-do-projeto)
 - [Requisitos](#requisitos)
 - [Instalação](#instalação)
 - [Guia de Execução](#guia-de-execução)
