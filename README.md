@@ -30,10 +30,10 @@ Desenvolvida para análise de logs enviados de máquinas virtuais, o sistema é 
 
 O sistema opera em duas frentes de detecção independentes e complementares:
 
-**1. Detecção por sequência (DeepLog + Drain3)**
+1. Detecção por sequência (DeepLog + Drain3)
 O Drain3 agrupa as linhas de log em templates, atribuindo a cada uma um identificador de evento (event ID). A sequência desses IDs é então usada para treinar um modelo LSTM que aprende os padrões normais de comportamento do sistema. Durante a inferência, linhas cujo event ID não está entre as previsões esperadas pelo modelo são classificadas como anomalias.
 
-**2. Detecção por horário (Time Detector)**
+2. Detecção por horário (Time Detector)
 Regras baseadas em tempo identificam acessos SSH, execuções de `sudo` e trocas de usuário (`su`) realizados fora de uma janela de horário configurável. Para cada evento suspeito, o sistema registra o horário exato, o usuário envolvido, o hostname da máquina afetada e o endereço IP ou identificador de origem.
 
 ---
@@ -62,37 +62,6 @@ Logs da VM (.log)
        │
        ▼
   Relatórios JSON + Terminal
-```
-
----
-
-## Estrutura do Projeto
-
-```
-syslog-analysis/
-│
-├── data/
-│   ├── raw/            ← logs brutos da VM (.log)
-│   ├── parsed/         ← templates e event IDs gerados pelo Drain3
-│   └── sequences/      ← sequências processadas
-│
-├── output/
-│   ├── models/         ← modelo treinado (deeplog.pt)
-│   └── reports/        ← relatórios de anomalia em JSON
-│
-├── src/
-│   ├── main.py         ← entry point CLI
-│   ├── config.py       ← parâmetros centrais do projeto
-│   ├── parser.py       ← integração com Drain3
-│   ├── classifier.py   ← modelo DeepLog (LSTM)
-│   ├── detector.py     ← orquestra parser + classifier
-│   ├── time_detector.py← detecção de acessos fora do horário
-│   ├── metrics.py      ← métricas de avaliação (precision, recall, F1)
-│   └── report.py       ← geração de relatórios
-│
-└── utils/
-    ├── Drain3/         ← biblioteca Drain3 (local)
-    └── DeepLog/        ← biblioteca DeepLog (local)
 ```
 
 ---
@@ -161,14 +130,6 @@ python src/main.py full --logs data/raw --start 08:00 --end 18:00
 ```bash
 python src/main.py full --logs data/raw --no-time-check
 ```
-
-**O que acontece internamente:**
-
-1. O Drain3 lê cada linha dos arquivos `.log`, extrai a mensagem útil (sem timestamp e hostname) e agrupa linhas semelhantes em templates. Cada template recebe um `cluster_id`.
-2. A sequência de `cluster_id`s é usada para treinar o modelo LSTM. O modelo aprende quais event IDs tendem a aparecer após uma determinada janela de contexto.
-3. Durante a detecção, cada posição da sequência é avaliada: se o event ID real não está entre as `top-k` previsões do modelo, a posição é marcada como anomalia.
-4. Em paralelo, o detector de horário varre os arquivos em busca de eventos de acesso (SSH, sudo, su) fora da janela configurada.
-
 ---
 
 ### 2. Somente Parse (`parse`)
@@ -179,7 +140,7 @@ Executa apenas o Drain3, sem treinar ou detectar anomalias. Útil para inspecion
 python src/main.py parse --logs data/raw
 ```
 
-**Saída no terminal:**
+Saída no terminal:
 
 ```
 ────────────────────────────────────────────────────
@@ -210,7 +171,7 @@ python src/main.py train --logs data/raw
 
 O modelo treinado é salvo em `output/models/deeplog.pt`.
 
-**Parâmetros de treino configuráveis em `config.py`:**
+Parâmetros de treino configuráveis em `config.py`:
 
 | Parâmetro | Padrão | Descrição |
 |---|---|---|
@@ -355,7 +316,7 @@ DEEPLOG_EPOCHS = 100  # aumentar para logs maiores
 
 ## Formato de Log Suportado
 
-O sistema espera logs no formato **syslog padrão**:
+O sistema espera logs no formato syslog padrão:
 
 ```
 May  3 22:45:01 hostname processo[pid]: mensagem do evento
