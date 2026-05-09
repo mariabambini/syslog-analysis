@@ -2,7 +2,7 @@
 
 Repositório de estudo de caso desenvolvido no contexto de pesquisa universitária sobre análise de logs de sistema com mapeamento de usuário para detecção de comportamento anômalo.
 O trabalho investiga a aplicação do parser Drain3 em conjunto com o modelo de aprendizado profundo DeepLog (LSTM) para identificar desvios de comportamento em logs de máquinas virtuais. A abordagem combina detecção baseada em sequência de eventos — onde o modelo aprende os padrões normais de operação do sistema — com detecção baseada em regras temporais, que identifica acessos realizados fora do horário esperado e rastreia o identificador da máquina de origem.
----
+
 
 ## Sumário
 
